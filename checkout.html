@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout</title>
+</head>
+<body>
+  <h1>Checkout</h1>
+
+  <!-- Delivery Options -->
+  <h2>Delivery Options</h2>
+  <form action="order_confirmation.html" method="post">
+    <p>
+      <input type="radio" name="delivery" value="pickup" onclick="toggleDelivery(false)" required> Pick up from store
+    </p>
+    <p>
+      <input type="radio" name="delivery" value="deliver" onclick="toggleDelivery(true)"> Deliver (P45 extra)
+    </p>
+
+    <!-- Delivery Details (hidden until delivery selected) -->
+    <div id="deliveryDetails" style="display:none;">
+      <h3>Delivery Information</h3>
+      <p>Address: <input type="text" name="address" placeholder="P O Box 111, Gaborone, Plot 1111"></p>
+      <p>Name: <input type="text" name="fullname"></p>
+      <p>City: <input type="text" name="city"></p>
+      <p>Region: <input type="text" name="region"></p>
+      <p>Phone: <input type="tel" name="phone"></p>
+    </div>
+
+    <!-- Payment Methods -->
+    <h2>Payment Methods</h2>
+    <p><input type="radio" name="payment" value="visa" required> Visa</p>
+    <p><input type="radio" name="payment" value="paypal"> PayPal</p>
+
+    <!-- Bank Details Section -->
+    <h2>Bank Details</h2>
+    <p>Card Number: <input type="text" name="cardnumber"></p>
+    <p>Expiry Date: <input type="month" name="expiry"></p>
+    <p>CVV: <input type="text" name="cvv"></p>
+
+    <!-- Summary -->
+    <h2>Summary</h2>
+    <p>Subtotal: P<span id="subtotal">50</span></p>
+    <p>Delivery Fee: P<span id="deliveryFee">0</span></p>
+    <p><strong>Total Amount: P<span id="total">50</span></strong></p>
+
+    <!-- Place Order -->
+    <p><button type="submit">Place Order</button></p>
+  </form>
+
+  <script>
+    let subtotal = 50;
+    let deliveryFee = 0;
+
+    function toggleDelivery(isDelivery) {
+      const details = document.getElementById('deliveryDetails');
+      if (isDelivery) {
+        details.style.display = 'block';
+        deliveryFee = 45;
+      } else {
+        details.style.display = 'none';
+        deliveryFee = 0;
+      }
+      document.getElementById('deliveryFee').innerText = deliveryFee;
+      document.getElementById('total').innerText = subtotal + deliveryFee;
+    }
+  </script>
+</body>
+</html>

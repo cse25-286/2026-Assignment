@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Cart</title>
+</head>
+<body>
+  <h1>My Cart</h1>
+
+  <!-- Product List -->
+  <div>
+    <h2>Products Bought</h2>
+    <div>
+      <img src="images/formal_4.jpeg" alt="Dress" width="100">
+      <div>
+        <p>Name: Summer Dress</p>
+        <p>Price: P500.00</p>
+        <p>
+          Quantity:
+          <button onclick="changeQuantity(-1)">-</button>
+          <input type="text" id="quantity" value="1" readonly>
+          <button onclick="changeQuantity(1)">+</button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div>
+    <h2>Summary</h2>
+    <p>Items: <span id="itemCount">1</span></p>
+    <p>Subtotal: P<span id="subtotal">500</span></p>
+    <p>Total Amount: P<span id="total">500</span></p>
+  </div>
+
+  <!-- Checkout -->
+  <div>
+    <button onclick="goToCheckout()">Checkout</button>
+  </div>
+
+  <script>
+    let quantity = 1;
+    const price = 500;
+
+    function changeQuantity(change) {
+      quantity += change;
+      if (quantity < 1) quantity = 1;
+      document.getElementById('quantity').value = quantity;
+      document.getElementById('itemCount').innerText = quantity;
+      document.getElementById('subtotal').innerText = price * quantity;
+      document.getElementById('total').innerText = price * quantity;
+    }
+
+    function goToCheckout() {
+      window.location.href = "checkout.html";
+    }
+  </script>
+</body>
+</html>
