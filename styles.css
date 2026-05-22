@@ -1,0 +1,1319 @@
+/* ═══════════════════════════════════════════════════════
+   GRACE & ELEGANCE BOUTIQUE — styles.css
+   ═══════════════════════════════════════════════════════ */
+
+/* ── GOOGLE FONTS ── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+
+/* ── CSS VARIABLES ── */
+:root {
+  --cream:       #F9F5EF;
+  --warm-white:  #FDFAF6;
+  --charcoal:    #1C1C1A;
+  --gold:        #B8965A;
+  --gold-light:  #D4AF7A;
+  --muted:       #7A756E;
+  --border:      #E8E2D8;
+  --blush:       #F0E8E0;
+  --font-serif:  'Cormorant Garamond', Georgia, serif;
+  --font-sans:   'Jost', sans-serif;
+}
+
+/* ── RESET & BASE ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 15px;           /* FIX: base font-size so everything scales evenly */
+  background: var(--warm-white);
+  color: var(--charcoal);
+  line-height: 1.6;
+}
+
+img { max-width: 100%; display: block; }
+a   { text-decoration: none; color: inherit; }
+ul  { list-style: none; }
+
+
+/* ════════════════════════════════════════════
+   HEADER  —  logo | nav | search | cart  (one row)
+   ════════════════════════════════════════════ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--warm-white);
+  border-bottom: 1px solid var(--border);
+
+  /* FIX: position:relative required for absolute mega-box anchor */
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 80px;          /* FIX: slightly taller so logo + nav feel balanced */
+  gap: 1.5rem;
+}
+
+/* ── Logo ── */
+.logo { flex-shrink: 0; }
+
+.logo img {
+  /* FIX: was 60px — bumped to 64px so it matches the 80px header height nicely */
+  height: 64px;
+  width: auto;
+}
+
+/* ── Bootstrap navbar (middle) ── */
+.site-header .navbar {
+  flex: 1;
+  padding: 0;
+  background: transparent !important;
+}
+
+.site-header .container-fluid { padding: 0; }
+
+/* Nav links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.nav-links .nav-link {
+  font-family: var(--font-sans);
+  font-size: 12px;       /* kept compact so all links fit */
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  padding: 8px 10px;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.nav-links .nav-link:hover,
+.nav-links .nav-link:focus { color: var(--gold); }
+
+/* ── Cart icon ── */
+.cart-icon-btn {
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--charcoal);
+  transition: color 0.2s;
+  text-decoration: none;
+  margin-left: 0.5rem;
+}
+.cart-icon-btn:hover,
+.cart-icon-btn.active { color: var(--gold); }
+
+.cart-badge {
+  position: absolute;
+  top: -7px;
+  right: -9px;
+  background: var(--gold);
+  color: #fff;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* ── Search bar ── */
+.search-form {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.search-form .form-control {
+  border: 1px solid var(--border);
+  border-radius: 0;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 300;
+  background: var(--cream);
+  color: var(--charcoal);
+  width: 170px;          /* FIX: was 200px — slightly narrower to give nav more room */
+  padding: 6px 10px;
+  transition: border-color 0.2s;
+}
+
+.search-form .form-control:focus {
+  border-color: var(--gold);
+  box-shadow: none;
+  outline: none;
+}
+
+.search-form .btn {
+  border-radius: 0;
+  border: 1px solid var(--charcoal);
+  background: var(--charcoal);
+  color: var(--cream);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.search-form .btn:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+
+
+/* ════════════════════════════════════════════
+   MEGA MENU
+   ════════════════════════════════════════════ */
+.drop-mega { position: relative; }
+
+.mega-box {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 480px;
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--gold);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+  padding: 0.4rem 1.25rem 1.25rem;
+  z-index: 999;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.drop-mega:hover .mega-box,
+.drop-mega:focus-within .mega-box {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mega-box .menu-heading {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--charcoal);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.mega-box .category ul {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mega-box .category ul li a {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.mega-box .category ul li a:hover { color: var(--gold); }
+
+
+/* ════════════════════════════════════════════
+   BUTTONS
+   ════════════════════════════════════════════ */
+.btn-primary {
+  display: inline-block;
+  padding: 12px 36px;
+  background: var(--charcoal);
+  color: var(--cream) !important;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid var(--charcoal);
+  transition: background 0.3s, border-color 0.3s;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 10px 28px;
+  background: transparent;
+  color: var(--cream) !important;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid var(--cream);
+  transition: background 0.3s, color 0.3s;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: var(--cream);
+  color: var(--charcoal) !important;
+}
+
+
+/* ════════════════════════════════════════════
+   HERO SECTION
+   ════════════════════════════════════════════ */
+#hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  /* No background colour needed — image fills it all */
+  background: #000;
+}
+
+/* Image fills the entire hero box — no black edges */
+.hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  /* object-fit:cover fills every pixel of the hero.
+     The image won't have empty space around it. */
+  object-fit: cover;
+  object-position: center center;
+  /* Full opacity — the dark overlay below handles readability */
+  opacity: 1;
+}
+
+/* Dark gradient overlay sits above the image so
+   text is readable without lowering image opacity */
+#hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.62) 0%,    /* darker on the left where text sits */
+    rgba(0,0,0,0.25) 60%,   /* fades out to the right */
+    rgba(0,0,0,0.05) 100%
+  );
+}
+
+/* Text sits above the overlay */
+.hero-content {
+  position: relative;
+  z-index: 2;           /* above the ::after overlay */
+  max-width: 580px;
+  padding: 2.5rem 3rem;
+}
+
+.hero-line {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 1.25rem;
+}
+
+.hero-content h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--cream);
+  letter-spacing: 2px;
+  margin-bottom: 0.75rem;
+}
+
+.hero-content h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.hero-content p {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(249,245,239,0.75);
+  margin-bottom: 2rem;
+}
+
+
+/* ════════════════════════════════════════════
+   WELCOME SECTION
+   ════════════════════════════════════════════ */
+#welcome {
+  text-align: center;
+  /* FIX: was 5rem top/bottom — reduced to 3.5rem
+     so all sections feel equally spaced */
+  padding: 3.5rem 2rem;
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+}
+
+.welcome-inner { max-width: 600px; margin: 0 auto; }
+
+.label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+
+.welcome-inner h2 {
+  font-family: var(--font-serif);
+  /* FIX: clamp range reduced to match featured h2 */
+  font-size: clamp(24px, 3.5vw, 38px);
+  font-weight: 300;
+  margin-bottom: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.welcome-inner p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.divider {
+  width: 48px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto;
+}
+
+
+/* ════════════════════════════════════════════
+   FEATURED PRODUCTS
+   — 3 cards in one row
+   — Text + button overlay slides up on hover
+   ════════════════════════════════════════════ */
+#featured {
+  /* FIX: was 5rem 3rem — side padding of 3rem was
+     making the section wider than welcome/signup.
+     Using 3.5rem top + max-width container for consistency */
+  padding: 3.5rem 0;
+  text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+#featured > .label { margin-bottom: 0.5rem; }
+
+#featured > h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 3.5vw, 38px);
+  font-weight: 300;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+/* ── Grid: 3 equal columns ── */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+/* ── Card ── */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.13);
+}
+
+/* ── Image wrapper
+   FIX: was aspect-ratio: 3/4 which made cards
+   extremely tall (taller than the nav + welcome
+   combined on a laptop screen). Changed to 4/3
+   (landscape) so all 3 cards fit comfortably
+   in the viewport without scrolling. ── */
+.product-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--blush);
+}
+
+.product-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* FIX: removed scale transition — the card itself
+     already lifts on hover which is enough movement.
+     Combining card lift + image zoom caused the
+     featured section to feel very animated/heavy */
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-img-wrap img {
+  transform: scale(1.03);   /* very subtle, just a hint */
+}
+
+/* ── Info overlay: slides up on hover ── */
+.product-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1.25rem 1.25rem;
+  background: linear-gradient(
+    to top,
+    rgba(28,28,26,0.90) 0%,
+    rgba(28,28,26,0.50) 70%,
+    transparent 100%
+  );
+  transform: translateY(100%);
+  transition: transform 0.32s ease;
+  text-align: left;
+}
+
+.product-card:hover .product-info { transform: translateY(0); }
+
+.product-info h3 {
+  font-family: var(--font-serif);
+  /* FIX: was 22px — reduced to 18px to match
+     overall proportional scaling */
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.2rem;
+}
+
+.product-info p {
+  font-size: 12px;
+  color: rgba(249,245,239,0.72);
+  margin-bottom: 0.75rem;
+}
+
+/* Badge */
+.product-img-wrap .badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--gold);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 0;
+  z-index: 2;
+}
+
+/* Placeholder card centre text */
+.product-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-placeholder > span {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+
+/* ════════════════════════════════════════════
+   SIGN-UP SECTION
+   FIX: was max-width 600px centred but padding
+   5rem made it feel disconnected from the rest.
+   Now matches the featured section's 3.5rem
+   vertical rhythm.
+   ════════════════════════════════════════════ */
+#signup {
+  background: var(--blush);
+  padding: 3.5rem 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.signup-inner {
+  /* FIX: was 600px — widened to 640px so the
+     two-column form rows don't feel cramped */
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.signup-inner h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 3.5vw, 38px);
+  font-weight: 300;
+  margin-bottom: 0.4rem;
+}
+
+.signup-inner > p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.signup-form { text-align: left; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 0;   /* gap handled by form-group margin */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.form-group input {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  background: var(--warm-white);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--charcoal);
+  outline: none;
+  transition: border-color 0.2s;
+  border-radius: 0;
+}
+
+.form-group input:focus { border-color: var(--gold); }
+
+.signup-form .btn-primary {
+  width: 100%;
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+
+/* ════════════════════════════════════════════
+   FOOTER  — compact, two columns side by side
+   ════════════════════════════════════════════ */
+.site-footer {
+  background: var(--charcoal);
+  color: var(--cream);
+  /* Reduced from 3rem 4rem — tighter top/bottom */
+  padding: 1.75rem 3rem 0;
+  display: flex;
+  flex-direction: column;   /* stack the main row + copyright */
+  gap: 0;
+}
+
+/* ── Main row: Contact | Social ── */
+.footer-main {
+  display: grid;
+  /* Two equal columns: Contact Us  |  Follow Us */
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding-bottom: 1.25rem;
+}
+
+.footer-col h4 {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+
+.footer-col p {
+  font-size: 12px;
+  color: rgba(249,245,239,0.6);
+  margin-bottom: 4px;
+  line-height: 1.6;
+}
+
+/* ── Social icons: all in ONE horizontal row ── */
+.social-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.social-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.social-item img {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 4px;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+  display: inline-block;
+}
+
+.social-item img:hover { opacity: 1; }
+
+.social-item span {
+  font-size: 11px;
+  color: rgba(249,245,239,0.55);
+}
+
+/* ── Copyright bar ── */
+.footer-bottom {
+  border-top: 1px solid rgba(249,245,239,0.1);
+  padding: 0.75rem 0;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 11px;
+  color: rgba(249,245,239,0.3);
+  letter-spacing: 1px;
+}
+
+.footer-bottom p {
+  font-size: 12px;
+  color: rgba(249,245,239,0.3);
+  letter-spacing: 1px;
+}
+
+
+/* ════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════ */
+
+/* Tablet ≤ 992px — Bootstrap collapses navbar */
+@media (max-width: 992px) {
+
+  .site-header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 1rem 1.5rem;
+    gap: 0.75rem;
+  }
+
+  .search-form {
+    order: 3;
+    width: 100%;
+  }
+
+  .search-form .form-control { width: 100%; }
+
+  /* Mega menu stacks on mobile */
+  .mega-box {
+    position: static !important;
+    display: none;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 0.75rem 0 0;
+    border: none;
+    box-shadow: none;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .drop-mega:hover .mega-box,
+  .drop-mega:focus-within .mega-box {
+    display: grid;
+  }
+
+  .product-grid { grid-template-columns: 1fr 1fr; }
+  
+  /* On tablet the featured cards can go portrait again
+     since there are only 2 per row */
+  .product-img-wrap { aspect-ratio: 3 / 4; }
+}
+
+/* Mobile ≤ 600px */
+@media (max-width: 600px) {
+
+  .product-grid { grid-template-columns: 1fr; }
+  .product-img-wrap { aspect-ratio: 4 / 3; }
+
+  .hero-content { padding: 1.5rem; }
+
+  #featured {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .form-row { grid-template-columns: 1fr; }
+
+  .site-footer { padding: 1.25rem 1.5rem 0; }
+  .footer-main  { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+/* ════════════════════════════════════════
+       ABOUT SECTION  —  image left | text right
+    ════════════════════════════════════════ */
+    .about-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* ── Left column: rounded image + button ── */
+    .about-image-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.75rem;
+      position: sticky;
+      top: 100px;         /* sticks while you scroll the text */
+    }
+
+    .about-img-frame {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;          /* perfectly circular */
+      overflow: hidden;
+      border: 4px solid var(--gold);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+
+    .about-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .about-image-caption {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-style: italic;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Shop Now button under the image */
+    .btn-shop-now {
+      display: inline-block;
+      padding: 12px 36px;
+      background: var(--charcoal);
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border: 1px solid var(--charcoal);
+      transition: background 0.3s, border-color 0.3s;
+      text-align: center;
+    }
+
+    .btn-shop-now:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--cream);
+    }
+
+    /* ── Right column: about text ── */
+    .about-text-col {
+      padding-top: 0.5rem;
+    }
+
+    .about-text-col .section-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .about-text-col h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 300;
+      letter-spacing: 1px;
+      margin-bottom: 2rem;
+      color: var(--charcoal);
+    }
+
+    .about-text-col h2 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-text-col p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Lists */
+    .about-list {
+      list-style: none;
+      margin: 0.5rem 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .about-list li {
+      font-size: 14px;
+      color: var(--muted);
+      padding-left: 1.25rem;
+      position: relative;
+      line-height: 1.7;
+    }
+
+    .about-list li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 10px;
+      top: 4px;
+    }
+
+    /* ════════════════════════════════════════
+       DIVIDER
+    ════════════════════════════════════════ */
+    .section-divider {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ════════════════════════════════════════
+       REVIEWS SECTION
+    ════════════════════════════════════════ */
+    .reviews-section {
+      background: var(--cream);
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .reviews-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .reviews-header .label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .reviews-header h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: var(--charcoal);
+    }
+
+    /* ── Review card grid ── */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .review-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+      transform: translateY(-4px);
+    }
+
+    /* Stars */
+    .review-stars {
+      color: var(--gold);
+      font-size: 15px;
+      letter-spacing: 2px;
+    }
+
+    /* Quote text */
+    .review-text {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--charcoal);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .review-text::before { content: '\201C'; }
+    .review-text::after  { content: '\201D'; }
+
+    /* Reviewer name + detail */
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    .reviewer-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--blush);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .reviewer-info h4 {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 1px;
+    }
+
+    .reviewer-info p {
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .about-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .about-image-col {
+        position: static;
+      }
+
+      .reviews-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-img-frame {
+        width: 220px;
+        height: 220px;
+      }
+    }
+
+    /*Contact Page*/
+  
+      /* Intro blurb */
+    .contact-intro .eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-intro h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 300;
+      color: var(--charcoal);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-intro p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    /* Contact detail cards */
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.85rem 1rem;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+    }
+
+    .contact-detail-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .contact-detail-text h4 {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2px;
+    }
+
+    .contact-detail-text p {
+      font-size: 13px;
+      color: var(--charcoal);
+      margin: 0;
+    }
+
+    .contact-detail-text a {
+      font-size: 13px;
+      color: var(--charcoal);
+      transition: color 0.2s;
+    }
+
+    .contact-detail-text a:hover { color: var(--gold); }
+
+    /* ════════════════════════════════════════
+       Form
+    ════════════════════════════════════════ */
+    .contact-right {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+    }
+
+    .contact-right .form-title {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 300;
+      color: var(--charcoal);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-right .form-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.7;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Form fields */
+    .cf-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .cf-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 1.1rem;
+    }
+
+    .cf-group label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .cf-group input,
+    .cf-group select,
+    .cf-group textarea {
+      padding: 10px 13px;
+      border: 1px solid var(--border);
+      background: var(--warm-white);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--charcoal);
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 0;
+      width: 100%;
+    }
+
+    .cf-group input:focus,
+    .cf-group select:focus,
+    .cf-group textarea:focus {
+      border-color: var(--gold);
+      background: #fff;
+    }
+
+    .cf-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Subject type dropdown — lets user categorise message */
+    .cf-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A756E' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      cursor: pointer;
+    }
+
+    /* Character counter hint */
+    .cf-hint {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: right;
+      margin-top: 3px;
+    }
+
+    /* Submit button */
+    .btn-send {
+      width: 100%;
+      padding: 13px;
+      background: var(--charcoal);
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border: 1px solid var(--charcoal);
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s;
+      margin-top: 0.25rem;
+    }
+
+    .btn-send:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    /* Success message (shown by JS after submit) */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .form-success .tick {
+      font-size: 40px;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .form-success h3 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-success p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .contact-left { position: static; }
+      .cf-row        { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 500px) {
+      .contact-right { padding: 1.5rem; }
+    }

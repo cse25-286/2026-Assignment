@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | Grace & Elegance Boutique</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* ── PAGE BANNER ── */
+    .page-banner {
+      background: var(--charcoal);
+      color: var(--cream);
+      text-align: center;
+      padding: 3rem 2rem;
+      border-bottom: 2px solid var(--gold);
+    }
+    .page-banner .breadcrumb-nav {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .page-banner .breadcrumb-nav a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .page-banner .breadcrumb-nav a:hover { text-decoration: underline; }
+    .page-banner h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 300;
+      letter-spacing: 3px;
+    }
+    .page-banner h1 em { font-style: italic; color: var(--gold-light); }
+    .page-banner p {
+      font-size: 13px;
+      color: rgba(249,245,239,0.55);
+      margin-top: 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    /* ── SHOP LAYOUT ── */
+    .shop-wrapper {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .filter-bar p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .filter-bar p span { color: var(--charcoal); font-weight: 500; }
+    .sort-select {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 1px;
+      border: 1px solid var(--border);
+      background: var(--cream);
+      padding: 7px 14px;
+      color: var(--charcoal);
+      cursor: pointer;
+      outline: none;
+    }
+    .sort-select:focus { border-color: var(--gold); }
+
+    /* ── PRODUCT GRID — 4 per row ── */
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.75rem;
+    }
+
+    /* ── PRODUCT CARD ── */
+    .shop-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .shop-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.10);
+    }
+
+    /* Image area */
+    .shop-card-img {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--blush);
+    }
+    .shop-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .shop-card:hover .shop-card-img img { transform: scale(1.05); }
+
+    /* Badge */
+    .shop-card-img .badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--gold);
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 0;
+      z-index: 2;
+    }
+    .badge-new  { background: var(--charcoal) !important; }
+    .badge-sale { background: #8B4040 !important; }
+
+    /* Card body */
+    .shop-card-body {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 0.4rem;
+    }
+    .shop-card-body h3 {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.2;
+    }
+    .shop-card-body .desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    /* Price row */
+    .price-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 0.25rem;
+    }
+    .price {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--gold);
+    }
+    .price-old {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+
+    /* Add to Cart button */
+    .btn-cart {
+      display: block;
+      width: 100%;
+      margin-top: 0.75rem;
+      padding: 10px;
+      background: var(--charcoal);
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid var(--charcoal);
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s;
+      text-align: center;
+    }
+    .btn-cart:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #fff;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .shop-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 700px) {
+      .shop-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    }
+    @media (max-width: 420px) {
+      .shop-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER (same on every page) ══ -->
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo.png" height="60" alt="Grace & Elegance logo" />
+      </a>
+    </div>
+
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="nav-links navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+
+            <li class="nav-item drop-mega">
+              <a class="nav-link" href="shop.html">Shop</a>
+              <div class="mega-box">
+                <div class="category">
+                  <p class="menu-heading">Women</p>
+                  <ul>
+                    <li><a href="women_elegant.html">Elegant</a></li>
+                    <li><a href="women_formal.html">Formal</a></li>
+                    <li><a href="women_casual.html">Casual</a></li>
+                  </ul>
+                </div>
+                <div class="category">
+                  <p class="menu-heading">Kids</p>
+                  <ul>
+                    <li><a href="kids_casual.html">Casual</a></li>
+                    <li><a href="kids_formal.html">Formal</a></li>
+                    <li><a href="kids_party.html">Party</a></li>
+                  </ul>
+                </div>
+                <div class="category">
+                  <p class="menu-heading">Jewellery</p>
+                  <ul>
+                    <li><a href="earrings.html">Earrings</a></li>
+                    <li><a href="necklaces.html">Necklaces</a></li>
+                    <li><a href="rings.html">Rings</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="promotions.html">Promotions</a></li>
+            <li class="nav-item"><a class="nav-link" href="customized_dress.html">Customized Dress</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          </ul>
+
+          <form class="search-form d-flex" id="search-form" role="search">
+            <input class="form-control me-2" type="text" placeholder="Search products..." name="search" aria-label="Search" />
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Cart icon with badge -->
+    <a href="cart.html" class="cart-icon-btn" aria-label="View cart">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </a>
+  </header>
+
+
+
+
+
+  <!-- ══ SHOP CONTENT ══ -->
+  <div class="shop-wrapper">
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <p> Find Your Style</p>
+      <select class="sort-select" aria-label="Sort products">
+        <option>Sort: Featured</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+      </select>
+    </div>
+
+    <!--  product grid-->
+
+    <div class="shop-grid">
+
+      <!-- Card 1 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/customized_5.jpeg" alt="Maroon Gown" />
+        </div>
+        <div class="shop-card-body">
+          <h3>Maroon Gown</h3>
+          <p class="desc">Floor legnth. A Sweetheart Neckline With A Tight Fitted Croset.And A Split. Perfect for black tie events.</p>
+          <div class="price-row">
+            <span class="price">P 1,200.00</span>
+          </div>
+          <button class="btn-cart">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/shop_2.jpeg" alt="Orange & Pink Dress" />
+         </div>
+        <div class="shop-card-body">
+          <h3>Orange & Pink Dress</h3>
+          <p class="desc">Above Knee legnth. With A Deep V Neckline.</p>
+          <div class="price-row">
+           
+            <span class="price">P 720.00</span>
+          </div>
+          <button class="btn-cart">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/necklace.jpeg" alt="Flower Necklace" />
+        </div>
+        <div class="shop-card-body">
+          <h3>Flower Necklace </h3>
+          <p class="desc">Flower Designs Made Out Of Acrylic.And A Gold Chain .</p>
+          <div class="price-row">
+            <span class="price">P250.00</span>
+          </div>
+          <button class="btn-cart">Add to Cart</button>
+        </div>
+      </div>
+
+<!-- Card 4 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/kids.jpeg" alt="Black Princess Gown" />
+        </div>
+        <div class="shop-card-body">
+          <h3>Short Ball Gown  </h3>
+          <p class="desc">Knee-Length Poofy Dress.</p>
+          <div class="price-row">
+            <span class="price">P560.00</span>
+          </div>
+          <button class="btn-cart">Add to Cart</button>
+        </div>
+      </div>
+
+
+      <!-- Card 5 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/kids_casual4.jpeg" alt="Pink & White Check Dress" />
+        </div>
+        <div class="shop-card-body">
+          <h3>Pink & White Check Dress </h3>
+          <p class="desc">Wide Stripped With A Bow Belt.</p>
+          <div class="price-row">
+            <span class="price">P280.00</span>
+          </div>
+          <button class="btn-cart">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/ring_1.jpeg" alt="Emerald Ring" />
+        </div>
+        <div class="shop-card-body">
+          <h3>Emerald Ring</h3>
+          <p class="desc">A Jardin Emerald Ring.</p>
+          <div class="price-row">
+            <span class="price">P1,250.00</span>
+          </div>
+          <button class="btn-cart">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/earring_4.jpeg" alt="Pearl Earrings" />
+        </div>
+        <div class="shop-card-body">
+          <h3>Pear Earrings</h3>
+          <p class="desc">Bow Pear Earrings .</p>
+          <div class="price-row">
+            <span class="price">P200.00</span>
+          </div>
+          <button class="btn-cart">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/customized_7.jpeg" alt="Multi Colored Dress" />
+        </div>
+        <div class="shop-card-body">
+          <h3>Colorful Dress </h3>
+          <p class="desc">Above Knee Legnth.Made Of A Germin Print Fabric</p>
+          <div class="price-row">
+            <span class="price">P250.00</span>
+          </div>
+          <button class="btn-cart">Add to Cart</button>
+        </div>
+      </div>
+
+      
+    </div><!-- end .shop-grid -->
+  </div><!-- end .shop-wrapper -->
+
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <p>📞 +267 71 234 567</p>
+        <p>📧 graceandelegance@gmail.com</p>
+        <h4 style="margin-top:1rem;">Follow Us</h4>
+        <div class="social-row">
+          <div class="social-item">
+            <img src="images/facebook.jpg" alt="Facebook" />
+            <span>grace&amp;elegance</span>
+          </div>
+          <div class="social-item">
+            <img src="images/twitter.jpg" alt="Twitter/X" />
+            <span>graceandelegance</span>
+          </div>
+          <div class="social-item">
+            <img src="images/instagram (1).jpg" alt="Instagram" />
+            <span>Instagram</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Grace &amp; Elegance. All rights reserved.</p>
+    </div>
+  </footer>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ 
+  <script>
+    /* ═══════════════════════════════════════════════════
+       CART LOGIC — women_elegant.html
+       Uses localStorage so items persist when the user
+       navigates to cart.html.
+    ═══════════════════════════════════════════════════ */
+ 
+    /* --- Load the current cart from localStorage.
+           Returns an empty array if nothing is stored yet. --- */
+    function getCart() {
+      return JSON.parse(localStorage.getItem('ge_cart') || '[]');
+    }
+ 
+    /* --- Save the cart array back to localStorage --- */
+    function saveCart(cart) {
+      localStorage.setItem('ge_cart', JSON.stringify(cart));
+    }
+ 
+    /* --- Update the badge number shown on the cart icon --- */
+    function refreshBadge() {
+      const cart  = getCart();
+      /* Add up all quantities to get the total item count */
+      const total = cart.reduce(function(sum, item) { return sum + item.qty; }, 0);
+      const badge = document.getElementById('cartBadge');
+      if (badge) badge.textContent = total;
+    }
+ 
+    /* --- Add a product to the cart ---
+         If the item already exists, increase its quantity by 1.
+         If it is new, push a fresh entry into the array.        --- */
+    function addToCart(name, price, img, category) {
+      const cart     = getCart();
+      /* Check if this product is already in the cart */
+      const existing = cart.find(function(item) { return item.name === name; });
+ 
+      if (existing) {
+        /* Item found — just increase quantity */
+        existing.qty += 1;
+      } else {
+        /* New item — add it with quantity 1 */
+        cart.push({ name: name, price: price, img: img, category: category, qty: 1 });
+      }
+ 
+      saveCart(cart);    /* persist to localStorage */
+      refreshBadge();    /* update the header badge count */
+    }
+ 
+    /* --- Wire up every "Add to Cart" button on this page ---
+         Each button carries its product data in data-* attributes
+         so we don't need to hard-code anything in JS.           --- */
+    document.querySelectorAll('.btn-cart').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        /* Read product details from the button's data attributes */
+        const name     = this.dataset.name;
+        const price    = parseFloat(this.dataset.price);
+        const img      = this.dataset.img;
+        const category = this.dataset.cat;
+ 
+        addToCart(name, price, img, category);
+ 
+        /* Visual feedback: change button text briefly */
+        this.textContent = '✓ Added';
+        this.style.background    = 'var(--gold)';
+        this.style.borderColor   = 'var(--gold)';
+ 
+        /* Reset button back to normal after 1.5 seconds */
+        const self = this;
+        setTimeout(function() {
+          self.textContent         = 'Add to Cart';
+          self.style.background    = '';
+          self.style.borderColor   = '';
+        }, 1500);
+      });
+    });
+ 
+    /* --- On page load, set the badge to reflect any existing cart --- */
+    refreshBadge();
+  </script>
+</body>
+</html>
