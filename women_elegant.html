@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Women — Elegant | Grace & Elegance Boutique</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- ══ HEADER (same on every page) ══ -->
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo.png" height="60" alt="Grace & Elegance logo" />
+      </a>
+    </div>
+
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="nav-links navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+
+            <li class="nav-item drop-mega">
+              <a class="nav-link" href="shop.html">Shop</a>
+              <div class="mega-box">
+                <div class="category">
+                  <p class="menu-heading">Women</p>
+                  <ul>
+                    <li><a href="women_elegant.html">Elegant</a></li>
+                    <li><a href="women_formal.html">Formal</a></li>
+                    <li><a href="women_casual.html">Casual</a></li>
+                  </ul>
+                </div>
+                <div class="category">
+                  <p class="menu-heading">Kids</p>
+                  <ul>
+                    <li><a href="kids_casual.html">Casual</a></li>
+                    <li><a href="kids_formal.html">Formal</a></li>
+                    <li><a href="kids_elegant.html">Elegant</a></li>
+                  </ul>
+                </div>
+                <div class="category">
+                  <p class="menu-heading">Jewellery</p>
+                  <ul>
+                    <li><a href="earrings.html">Earrings</a></li>
+                    <li><a href="necklaces.html">Necklaces</a></li>
+                    <li><a href="rings.html">Rings</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="promotions.html">Promotions</a></li>
+            <li class="nav-item"><a class="nav-link" href="customized_dress.html">Customized Dress</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          </ul>
+
+          <form class="search-form d-flex" id="search-form" role="search">
+            <input class="form-control me-2" type="text" placeholder="Search products..." name="search" aria-label="Search" />
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Cart icon with badge -->
+    <a href="cart.html" class="cart-icon-btn" aria-label="View cart">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </a>
+  </header>
+
+
+
+
+
+  <!-- ══ SHOP CONTENT ══ -->
+  <div class="shop-wrapper">
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <p> Women — Elegant</p>
+      <select class="sort-select" aria-label="Sort products">
+        <option>Sort: Featured</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+      </select>
+    </div>
+
+    <!--  product grid-->
+
+    <div class="shop-grid">
+
+      <!-- Card 1 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/elegant_11.jpeg" alt="Black Gown" />
+        </div>
+        <div class="shop-card-body">
+          <h3>Black Gown</h3>
+          <p class="desc">Floor-length with a split. Perfect for black tie events.</p>
+          <div class="price-row">
+            <span class="price">P 850.00</span>
+          </div>
+          <button
+           class="btn-cart"
+            data-name="Black Gown" data-price="850" 
+            data-img="images/elegant_11.jpeg" 
+            data-cat="Women  - Elegant">
+            Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/elegant_2.jpeg" alt="White dress with flower designs" />
+         
+        </div>
+        <div class="shop-card-body">
+          <h3>White Dress With Floral Designs</h3>
+          <p class="desc">Bias-cut . Effortlessly elegant.</p>
+          <div class="price-row">
+           
+            <span class="price">P 980.00</span>
+          </div>
+          <button 
+               class="btn-cart" 
+               data-name="White Dress With Floral Designs" 
+               data-price="980.00" 
+               data-img="images/elegant_2.jpeg" 
+               data-cat="Women - Elegant Clothing">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/elegant_5.jpeg" alt="Maroon Maxi dress" />
+        </div>
+        <div class="shop-card-body">
+          <h3>Maroon Maxi</h3>
+          <p class="desc">Flow legnth with sweetheart neckline and a split.</p>
+          <div class="price-row">
+            <span class="price">P660.00</span>
+          </div>
+         <button 
+            class="btn-cart" 
+            data-name="Maroon Maxi Dress" 
+            data-price="660.00" 
+            data-img="images/elegant_5.jpeg" 
+            data-cat="Women - Elegant Clothing">
+           Add to Cart
+        </button>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/elegant_6.jpeg" alt="Light Pink Dress" />
+         
+        </div>
+        <div class="shop-card-body">
+          <h3>Light Pink Dress</h3>
+          <p class="desc">Tight fitted with no straps.</p>
+          <div class="price-row">
+            <span class="price">P 500.00</span>
+          </div>
+          <button 
+              class="btn-cart" 
+              data-name="Maroon Gown" 
+              data-price="1200" 
+              data-img="images/elegant_6.jpeg" 
+              data-cat="Women - Elegant Clothing">
+              Add to Cart
+             </button>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/elegant_10.jpeg" alt="Blue Gown" />
+        </div>
+        <div class="shop-card-body">
+          <h3>Blue Laced Dress </h3>
+          <p class="desc">Baby blue drees. Floor length. Perfect for a wedding guest</p>
+          <div class="price-row">
+            <span class="price">P 700.00</span>
+          </div>
+
+          <button 
+              class="btn-cart" 
+              data-name="Blue Laced Dress" 
+              data-price="700.00" 
+              data-img="images/elegant_10.jpeg" 
+              data-cat="Women - Elegant Clothing">
+              Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/elegant_12.jpeg" alt="Multi colored dress" />
+        </div>
+        <div class="shop-card-body">
+          <h3>Multi Colored Dress</h3>
+          <p class="desc">Off-shoulder with a bright colored fabric at the front.</p>
+          <div class="price-row">
+            <span class="price">P 950.00</span>
+          </div>
+          <button 
+            class="btn-cart" 
+            data-name="Maroon Gown" 
+            data-price="1200" 
+           data-img="images/customized_5.jpeg" 
+           data-cat="Women - Elegant Clothing">
+  Add to Cart
+</button>
+        </div>
+      </div>
+
+    </div><!-- end .shop-grid -->
+  </div><!-- end .shop-wrapper -->
+
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="site-footer">
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <p>📞 Phone: +267 71 234 567</p>
+      <p>📧 Email: graceandelegance@gmail.com</p>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <img src="images/facebook.jpg" height="50" alt="Facebook" />
+      <p>grace&amp;elegance</p>
+      <br>
+      <img src="images/twitter.jpg" height="50" alt="Twitter/X" />
+      <p>graceandelegance</p>
+      <br>
+      <img src="images/instagram (1).jpg" height="50" alt="Instagram" />
+      <p>Instagram</p>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Grace &amp; Elegance. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

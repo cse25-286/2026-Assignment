@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Grace & Elegance Boutique</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    
+    :root {
+      --charcoal: #2b2b2b;
+      --cream: #fbf9f6;
+      --gold: #b08d57;
+      --border: #e5e0da;
+      --muted: #7c756e;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background-color: #fff;
+      color: var(--charcoal);
+      font-family: Arial, sans-serif;
+    }
+
+    /* ── SITE HEADER ── */
+    .site-header {
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+    }
+    .site-header .logo img {
+      max-height: 50px;
+    }
+    .cart-icon-btn {
+      position: relative;
+      color: var(--charcoal);
+      text-decoration: none;
+    }
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: var(--charcoal);
+      color: #fff;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 50%;
+    }
+
+    /* ── CHECKOUT HERO BANNER ── */
+    .page-banner {
+      background: rgb(12, 12, 12);
+      color: var(--cream);
+      text-align: center;
+      padding: 2rem 1rem;
+      border-bottom: 2px solid var(--gold);
+    }
+    .page-banner h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 300;
+      letter-spacing: 2px;
+      margin: 0;
+    }
+
+    /* ── CHECKOUT CONTAINER GRID ── */
+    .checkout-page {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold);
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+      color: var(--charcoal);
+    }
+
+    .checkout-container {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* ── FORM SECTIONS ── */
+    .checkout-form h2 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      margin-top: 2rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .checkout-form h2:first-of-type {
+      margin-top: 0;
+    }
+
+    /* Form Fields Styling */
+    .form-group-custom {
+      margin-bottom: 1rem;
+    }
+    .checkout-form input[type="text"],
+    .checkout-form input[type="tel"],
+    .checkout-form input[type="password"],
+    .checkout-form input[type="month"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      background-color: var(--cream);
+      color: var(--charcoal);
+      font-size: 14px;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s;
+    }
+    .checkout-form input:focus {
+      outline: none;
+      border-color: var(--gold);
+      background-color: #fff;
+    }
+
+    /*  Options */
+    .radio-box {
+      display: flex;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid var(--border);
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+      background-color: #fff;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+    .radio-box:hover {
+      background-color: var(--cream);
+    }
+    .radio-box input[type="radio"] {
+      margin-right: 12px;
+      accent-color: var(--charcoal);
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Card Field Inner Grid Layout */
+    .card-expiry-cvv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    /* Conditional Elements Smooth Visual Transitions */
+    .conditional-section {
+      max-height: 500px;
+      opacity: 1;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+    }
+    .conditional-section.hidden {
+      max-height: 0;
+      opacity: 0;
+      margin: 0;
+      padding: 0;
+      pointer-events: none;
+    }
+
+    /* ── Summary can not move!── */
+    .summary-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      position: sticky;
+      top: 20px;
+    }
+    .summary-card h2 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+    .summary-row .label-text {
+      color: var(--charcoal);
+    }
+    .summary-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1.5rem 0;
+    }
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+    }
+    .summary-total span:last-child {
+      color: var(--gold);
+    }
+
+    /* Checkout Complete Button */
+    .checkout-btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background: var(--charcoal);
+      color: var(--cream);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-align: center;
+    }
+    .checkout-btn:hover {
+      background: var(--gold);
+      color: #fff;
+    }
+
+    /* ── RESPONSIVE RESPONSIVENESS BREAKPOINT ── */
+    @media (max-width: 850px) {
+      .checkout-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .summary-card {
+        position: static;
+        order: -1; /* Summary card floats to top on tight screen spaces */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo.png" alt="Grace & Elegance logo" />
+      </a>
+    </div>
+    <!-- The icon color has been updated to var(--gold) below -->
+    <a href="cart.html" class="cart-icon-btn" aria-label="View cart">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" 
+           fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </a>
+  </header>
+
+  <!-- ════ BANNER ════ -->
+  <div class="page-banner">
+    <h1>Checkout</h1>
+  </div>
+
+  <!-- ════ MAIN CONTENT CONTAINER ════ -->
+  <div class="checkout-page">
+    <a href="cart.html" class="back-link">← Return to Cart</a>
+
+    <div class="checkout-container">
+      
+      <!-- LEFT SECTION: FORM FLOW -->
+      <div class="checkout-form">
+        <form action="order_confirmation.html" method="post" id="checkoutForm">
+          
+          <!-- Delivery Options Block Wrapper -->
+          <h2>Delivery Options</h2>
+          <label class="radio-box">
+            <input type="radio" name="delivery" value="pickup" checked required>
+            <span>Pick Up From Store (Free)</span>
+          </label>
+          <label class="radio-box">
+            <input type="radio" name="delivery" value="deliver">
+            <span>Home Delivery (+P45)</span>
+          </label>
+
+          <!-- Conditional Home Delivery Fields Box -->
+          <div id="deliveryInfoSection" class="conditional-section hidden">
+            <h2>Delivery Address Information</h2>
+            <input type="text" name="address" id="addressInput" placeholder="Plot / House Number, Street Name">
+            <input type="text" name="city" id="cityInput" placeholder="City / Town">
+            <input type="text" name="region" id="regionInput" placeholder="Region / District">
+          </div>
+
+          <!-- Contact Fields Box -->
+          <h2>Contact Information</h2>
+          <input type="text" name="fullname" placeholder="Full Name" required>
+          <input type="tel" name="phone" placeholder="Phone Number (+267...)" required>
+
+          <!-- Payment Options Block Wrapper -->
+          <h2>Payment Method</h2>
+          <label class="radio-box">
+            <input type="radio" name="payment" value="visa" checked required>
+            <span>Visa Card</span>
+          </label>
+          <label class="radio-box">
+            <input type="radio" name="payment" value="paypal">
+            <span>PayPal Balance Transfer</span>
+          </label>
+
+          <!-- Conditional Card Form Field Box -->
+          <div id="cardDetailsSection" class="conditional-section">
+            <h2>Card Details</h2>
+            <input type="text" name="cardnumber" id="cardNumInput" placeholder="Card Number (16 digits)" required>
+            
+            <div class="card-expiry-cvv-grid">
+              <input type="month" name="expiry" id="expiryInput" required>
+              <input type="password" name="cvv" id="cvvInput" placeholder="CVV" maxlength="3" required>
+            </div>
+          </div>
+
+          <button type="submit" class="checkout-btn mt-4">
+            Complete Purchase &amp; Pay
+          </button>
+        </form>
+      </div>
+
+      <!-- RIGHT SECTION: FIXED STICKY CALCULATED ORDER SUMMARY SIDEBAR -->
+      <aside class="summary-card">
+        <h2>Order Summary</h2>
+        
+        <div class="summary-row">
+          <span class="label-text">Bag Subtotal</span>
+          <span id="summarySubtotal">P 0</span>
+        </div>
+
+        <div class="summary-row">
+          <span class="label-text">Delivery Fee</span>
+          <span id="summaryDelivery">P 0</span>
+        </div>
+
+        <hr class="summary-divider" />
+
+        <div class="summary-total">
+          <span>Total To Pay</span>
+          <span id="summaryTotal">P 0</span>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- ════ LOGIC CONTROLLERS JAVASCRIPT ════ -->
+  <script>
+    // Price formatter helper configuration
+    function formatPrice(n) {
+      return 'P ' + n.toLocaleString('en-ZA');
+    }
+
+    // Dynamic cart retrieval extraction logic from localstorage
+    function getCart() {
+      return JSON.parse(localStorage.getItem('ge_cart') || '[]');
+    }
+
+    // Main structural financial compilation algorithm block
+    let cartSubtotal = 0;
+    const deliveryCostAmount = 45;
+
+    function calculateOrderTotals() {
+      const cart = getCart();
+      let totalItems = 0;
+      cartSubtotal = 0;
+
+      cart.forEach(function(item) {
+        totalItems += item.qty;
+        cartSubtotal += item.price * item.qty;
+      });
+
+      // Update basic subtotal references
+      document.getElementById('cartBadge').textContent = totalItems;
+      document.getElementById('summarySubtotal').textContent = formatPrice(cartSubtotal);
+      
+      // Execute pricing checks relying directly upon selected inputs
+      updateDynamicPricingDisplay();
+    }
+
+    function updateDynamicPricingDisplay() {
+      const isDeliverySelected = document.querySelector('input[name="delivery"]:checked').value === 'deliver';
+      const shippingCalculatedCost = isDeliverySelected ? deliveryCostAmount : 0;
+      const calculatedGrandTotal = cartSubtotal + shippingCalculatedCost;
+
+      // Render updated figures dynamically directly into text fields
+      document.getElementById('summaryDelivery').textContent = shippingCalculatedCost === 0 ? 'Free' : formatPrice(shippingCalculatedCost);
+      document.getElementById('summaryTotal').textContent = formatPrice(calculatedGrandTotal);
+    }
+
+    // Toggle logic for display states depending on choice buttons
+    const deliveryRadios = document.querySelectorAll('input[name="delivery"]');
+    const deliveryInfoSection = document.getElementById('deliveryInfoSection');
+    const addressInput = document.getElementById('addressInput');
+    const cityInput = document.getElementById('cityInput');
+    const regionInput = document.getElementById('regionInput');
+
+    deliveryRadios.forEach(radio => {
+      radio.addEventListener('change', function() {
+        if (this.value === 'deliver') {
+          deliveryInfoSection.classList.remove('hidden');
+          addressInput.setAttribute('required', 'true');
+          cityInput.setAttribute('required', 'true');
+          regionInput.setAttribute('required', 'true');
+        } else {
+          deliveryInfoSection.classList.add('hidden');
+          addressInput.removeAttribute('required');
+          cityInput.removeAttribute('required');
+          regionInput.removeAttribute('required');
+        }
+        updateDynamicPricingDisplay();
+      });
+    });
+
+    const paymentRadios = document.querySelectorAll('input[name="payment"]');
+    const cardDetailsSection = document.getElementById('cardDetailsSection');
+    const cardNumInput = document.getElementById('cardNumInput');
+    const expiryInput = document.getElementById('expiryInput');
+    const cvvInput = document.getElementById('cvvInput');
+
+    paymentRadios.forEach(radio => {
+      radio.addEventListener('change', function() {
+        if (this.value === 'visa') {
+          cardDetailsSection.classList.remove('hidden');
+          cardNumInput.setAttribute('required', 'true');
+          expiryInput.setAttribute('required', 'true');
+          cvvInput.setAttribute('required', 'true');
+        } else {
+          cardDetailsSection.classList.add('hidden');
+          cardNumInput.removeAttribute('required');
+          expiryInput.removeAttribute('required');
+          cvvInput.removeAttribute('required');
+        }
+      });
+    });
+
+    // Clear local storage upon form validation and tracking completion
+    document.getElementById('checkoutForm').addEventListener('submit', function() {
+      localStorage.removeItem('ge_cart');
+    });
+
+    // Initial parsing run control on window display initialization
+    calculateOrderTotals();
+  </script>
+</body>
+</html>

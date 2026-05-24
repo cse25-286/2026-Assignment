@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Women — Formal | Grace & Elegance Boutique</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- ══ HEADER (same on every page) ══ -->
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo.png" height="60" alt="Grace & Elegance logo" />
+      </a>
+    </div>
+
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="nav-links navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+
+            <li class="nav-item drop-mega">
+              <a class="nav-link" href="shop.html">Shop</a>
+              <div class="mega-box">
+                <div class="category">
+                  <p class="menu-heading">Women</p>
+                  <ul>
+                    <li><a href="women_elegant.html">Elegant</a></li>
+                    <li><a href="women_formal.html">Formal</a></li>
+                    <li><a href="women_casual.html">Casual</a></li>
+                  </ul>
+                </div>
+                <div class="category">
+                  <p class="menu-heading">Kids</p>
+                  <ul>
+                    <li><a href="kids_casual.html">Casual</a></li>
+                    <li><a href="kids_formal.html">Formal</a></li>
+                    <li><a href="kids_elegant.html">Elegant</a></li>
+                  </ul>
+                </div>
+                <div class="category">
+                  <p class="menu-heading">Jewellery</p>
+                  <ul>
+                    <li><a href="earrings.html">Earrings</a></li>
+                    <li><a href="necklaces.html">Necklaces</a></li>
+                    <li><a href="rings.html">Rings</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="promotions.html">Promotions</a></li>
+            <li class="nav-item"><a class="nav-link" href="customized_dress.html">Customized Dress</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          </ul>
+
+          <form class="search-form d-flex" id="search-form" role="search">
+            <input class="form-control me-2" type="text" placeholder="Search products..." name="search" aria-label="Search" />
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Cart icon with badge -->
+    <a href="cart.html" class="cart-icon-btn" aria-label="View cart">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </a>
+  </header>
+
+
+
+
+
+  <!-- ══ SHOP CONTENT ══ -->
+  <div class="shop-wrapper">
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <p> Necklaces</p>
+      <select class="sort-select" aria-label="Sort products">
+        <option>Sort: Featured</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+      </select>
+    </div>
+
+    <!--  product grid-->
+
+    <div class="shop-grid">
+
+      <!-- Card 1 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/necklace_3.jpeg" alt="White And Blue Dress with Stripes" />
+        </div>
+        <div class="shop-card-body">
+          <h3>Cross Necklace </h3>
+          <p class="desc">Gold Plated Stainless Steel</p>
+          <div class="price-row">
+            <span class="price">P 150.00</span>
+          </div>
+         <button 
+              class="btn-cart" 
+              data-name="Cross Necklace" 
+              data-price="150" 
+              data-img="images/necklace_3.jpeg" 
+              data-cat="Jewellery - Necklace">
+              Add to Cart
+        </button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/necklace.jpeg" alt="Necklace " />
+         
+        </div>
+        <div class="shop-card-body">
+          <h3> Flower Necklace</h3>
+          <p class="desc">Acrylic Necklace With Gold Chain</p>
+          <div class="price-row">
+           
+            <span class="price">P 350.00</span>
+          </div>
+       <button 
+              class="btn-cart" 
+              data-name="Flower Necklace" 
+              data-price="350" 
+              data-img="images/necklace.jpeg" 
+              data-cat="Jewellery - Necklace">
+              Add to Cart
+        </button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="shop-card">
+        <div class="shop-card-img">
+          <img src="images/necklace_2.jpeg" alt="Elegant Necklace" />
+        </div>
+        <div class="shop-card-body">
+          <h3>Elegant Necklace</h3>
+          <p class="desc"> Blue Gem Piece</p>
+          <div class="price-row">
+            <span class="price">P2225.00</span>
+          </div>
+          <button 
+              class="btn-cart" 
+              data-name="Elegant Necklace" 
+              data-price="2225" 
+              data-img="images/necklace_2.jpeg" 
+              data-cat="Jewellery - Necklace">
+              Add to Cart
+        </button>
+        </div>
+      </div>
+
+      
+    </div><!-- end .shop-grid -->
+  </div><!-- end .shop-wrapper -->
+
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="site-footer">
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <p>📞 Phone: +267 71 234 567</p>
+      <p>📧 Email: graceandelegance@gmail.com</p>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <img src="images/facebook.jpg" height="50" alt="Facebook" />
+      <p>grace&amp;elegance</p>
+      <br>
+      <img src="images/twitter.jpg" height="50" alt="Twitter/X" />
+      <p>graceandelegance</p>
+      <br>
+      <img src="images/instagram (1).jpg" height="50" alt="Instagram" />
+      <p>Instagram</p>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Grace &amp; Elegance. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+   <script>
+   
+ 
+    /* --- Load the current cart from localStorage.
+           Returns an empty array if nothing is stored yet. --- */
+    function getCart() {
+      return JSON.parse(localStorage.getItem('ge_cart') || '[]');
+    }
+ 
+    /* --- Save the cart array back to localStorage --- */
+    function saveCart(cart) {
+      localStorage.setItem('ge_cart', JSON.stringify(cart));
+    }
+ 
+    /* --- Update the badge number shown on the cart icon --- */
+    function refreshBadge() {
+      const cart  = getCart();
+      /* Add up all quantities to get the total item count */
+      const total = cart.reduce(function(sum, item) { return sum + item.qty; }, 0);
+      const badge = document.getElementById('cartBadge');
+      if (badge) badge.textContent = total;
+    }
+ 
+    /* --- Add a product to the cart ---
+         If the item already exists, increase its quantity by 1.
+         If it is new, push a fresh entry into the array.        --- */
+    function addToCart(name, price, img, category) {
+      const cart     = getCart();
+      /* Check if this product is already in the cart */
+      const existing = cart.find(function(item) { return item.name === name; });
+ 
+      if (existing) {
+        /* Item found — just increase quantity */
+        existing.qty += 1;
+      } else {
+        /* New item — add it with quantity 1 */
+        cart.push({ name: name, price: price, img: img, category: category, qty: 1 });
+      }
+ 
+      saveCart(cart);    /* persist to localStorage */
+      refreshBadge();    /* update the header badge count */
+    }
+ 
+    /* --- Wire up every "Add to Cart" button on this page ---
+         Each button carries its product data in data-* attributes
+         so we don't need to hard-code anything in JS.           --- */
+    document.querySelectorAll('.btn-cart').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        /* Read product details from the button's data attributes */
+        const name     = this.dataset.name;
+        const price    = parseFloat(this.dataset.price);
+        const img      = this.dataset.img;
+        const category = this.dataset.cat;
+ 
+        addToCart(name, price, img, category);
+ 
+        /* Visual feedback: change button text briefly */
+        this.textContent = '✓ Added';
+        this.style.background    = 'var(--gold)';
+        this.style.borderColor   = 'var(--gold)';
+ 
+        /* Reset button back to normal after 1.5 seconds */
+        const self = this;
+        setTimeout(function() {
+          self.textContent         = 'Add to Cart';
+          self.style.background    = '';
+          self.style.borderColor   = '';
+        }, 1500);
+      });
+    });
+ 
+    /* --- On page load, set the badge to reflect any existing cart --- */
+    refreshBadge();
+  </script>
+
+</body>
+</html>
